@@ -11,10 +11,8 @@ const Gallery = () =>{
     const getImg = async ()=>{
         const response = await fetch(url)
         const data = await response.json();
-        setContador((count) => ++count)
+        setContador((contador) => ++contador)
         setImg(data);
-       
-        console.log(data);
     }
     useEffect(()=>{
         getImg()
