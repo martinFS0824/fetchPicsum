@@ -4,11 +4,16 @@ import Card from "./Card";
 
 const Gallery = () =>{
     const [img, setImg] = useState([])
-    const url = "https://picsum.photos/v2/list?page=1&limit=5";
+    const [contador, setContador] = useState(1)
+        
+    const url = `https://picsum.photos/v2/list?page=${contador}&limit=5`;
+    
     const getImg = async ()=>{
         const response = await fetch(url)
         const data = await response.json();
+        setContador((count) => ++count)
         setImg(data);
+       
         console.log(data);
     }
     useEffect(()=>{
@@ -17,7 +22,6 @@ const Gallery = () =>{
     const imgPedidas = img.map((img)=>{
         return(
             <Card key={img.id} img={img}></Card>
-                // <img key={img.id} src={img.download_url} alt={img.author} />
         )
     })
     return(
